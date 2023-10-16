@@ -1,5 +1,5 @@
 {% set name = "pyfda" %}
-{% set version = "0.8.3" %}
+{% set version = "0.8.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyfda-{{ version }}.tar.gz
-  sha256: 0078c9235b21183a6a8d57dde442814ca2b43f70dae778126307041a759db3ad
+  sha256: 50da813e53492fa6cfc00d2d66533c896cd6d2681eb72e76fa3fc7338e7eb166
   patches:
     - 0001-Only-install-the-pyfda-package-and-not-any-extra-dir.patch
 
@@ -31,7 +31,7 @@ requirements:
     - matplotlib-base >=2.1
     - docutils
     - mplcursors
-    - numexpr
+    - numexpr <=2.8.4
     - markdown
     - pyqt
 
