@@ -31,7 +31,7 @@ requirements:
     - matplotlib-base >=2.1
     - docutils
     - mplcursors
-    - numexpr
+    - numexpr <=2.8.4
     - markdown
     - pyqt
 
