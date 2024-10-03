@@ -1,5 +1,5 @@
 {% set name = "pyfda" %}
-{% set version = "0.8.4" %}
+{% set version = "0.9.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyfda-{{ version }}.tar.gz
-  sha256: 50da813e53492fa6cfc00d2d66533c896cd6d2681eb72e76fa3fc7338e7eb166
+  sha256: 1604074df29b93a3079de9c74501019f2fc7100d320a50ffd9c29492f669bc82
   patches:
     - 0001-Only-install-the-pyfda-package-and-not-any-extra-dir.patch
 
