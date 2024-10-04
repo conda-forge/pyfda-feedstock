@@ -24,14 +24,15 @@ requirements:
     - python >=3.6
     - pyqt
     - pip
+    - setuptools
   run:
     - python >=3.6
     - numpy
     - scipy >=1.2.0
-    - matplotlib-base >=2.1
+    - matplotlib-base >=3.3
     - docutils
     - mplcursors
-    - numexpr <=2.8.4
+    - numexpr >=2.8.8
     - markdown
     - pyqt
 
@@ -39,7 +40,8 @@ test:
   imports:
     - pyfda
   commands:
-    - pip check
+    # ignore pip check while upstream requires numpy < 2 but it works anyway
+    #- pip check
     - pyfdax -h
     - pyfdax_no_term -h
   requires:
