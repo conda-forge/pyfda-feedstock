@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyfda-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyfda-{{ version }}.tar.gz
   sha256: b713549802d26b22b39ea38c9a3cad0b58ec78c063a7ce08093fe893ec2e6d72
   patches:
     - 0001-Only-install-the-pyfda-package-and-not-any-extra-dir.patch
@@ -17,16 +17,16 @@ build:
     - pyfdax_no_term = pyfda.pyfdax:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pyqt
     - pip
     - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - numpy
     - scipy >=1.2.0
     - matplotlib-base >=3.3
@@ -46,6 +46,7 @@ test:
     - pyfdax_no_term -h
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/chipmuenk/pyFDA
