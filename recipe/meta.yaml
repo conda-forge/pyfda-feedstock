@@ -10,6 +10,7 @@ source:
   sha256: fab3e3f0772d7ae2d8510cae74224b3be095dfab05eb16847442a32a9df5b2d8
   patches:
     - 0001-Only-install-the-pyfda-package-and-not-any-extra-dir.patch
+    - 0002-Fixes-for-numpy-2.patch
 
 build:
   entry_points:
@@ -17,7 +18,7 @@ build:
     - pyfdax_no_term = pyfda.pyfdax:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 2
 
 requirements:
   host:
