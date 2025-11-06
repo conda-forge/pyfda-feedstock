@@ -1,0 +1,202 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Thu, 6 Nov 2025 18:33:16 -0500
+Subject: [PATCH] Fixes for numpy 2
+
+---
+ pyfda/fixpoint_widgets/fir_df/fir_df_amaranth.py     | 2 +-
+ pyfda/fixpoint_widgets/fir_df/fir_df_amaranth_mod.py | 4 ++--
+ pyfda/fixpoint_widgets/fir_df/fir_df_pyfixp.py       | 2 +-
+ pyfda/fixpoint_widgets/fx_ui_wq.py                   | 2 +-
+ pyfda/fixpoint_widgets/iir_df1/iir_df1_pyfixp.py     | 2 +-
+ pyfda/fixpoint_widgets/old/fir_df/fir_df_nmigen.py   | 2 +-
+ pyfda/fixpoint_widgets/old/fixpoint_helpers.py       | 4 ++--
+ pyfda/libs/pyfda_fix_lib.py                          | 4 ++--
+ pyfda/libs/pyfda_io_lib.py                           | 5 +++--
+ pyfda/libs/pyfda_lib.py                              | 4 ++--
+ 10 files changed, 16 insertions(+), 15 deletions(-)
+
+diff --git a/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth.py b/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth.py
+index b5975055..5068d6fb 100644
+--- a/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth.py
++++ b/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth.py
+@@ -10,7 +10,7 @@
+ Fixpoint class for calculating direct-form DF1 FIR filter using pyfixp routines
+ """
+ import numpy as np
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ import pyfda.filterbroker as fb
+ # from pyfda.libs.pyfda_lib import pprint_log
+ import pyfda.libs.pyfda_fix_lib as fx
+diff --git a/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth_mod.py b/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth_mod.py
+index a1a00142..67033e85 100644
+--- a/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth_mod.py
++++ b/pyfda/fixpoint_widgets/fir_df/fir_df_amaranth_mod.py
+@@ -13,7 +13,7 @@ import logging
+ logger = logging.getLogger(__name__)
+ 
+ import numpy as np
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ import pyfda.filterbroker as fb
+ # from pyfda.libs.pyfda_lib import pprint_log
+ import pyfda.libs.pyfda_fix_lib as fx
+@@ -214,4 +214,4 @@ if __name__ == '__main__':
+     # This remembers sreg from last run!
+     stimulus = np.zeros(20)
+     sim.add_process(process)
+-    sim.run()
+\ No newline at end of file
++    sim.run()
+diff --git a/pyfda/fixpoint_widgets/fir_df/fir_df_pyfixp.py b/pyfda/fixpoint_widgets/fir_df/fir_df_pyfixp.py
+index 4fad253f..a49cdfb2 100644
+--- a/pyfda/fixpoint_widgets/fir_df/fir_df_pyfixp.py
++++ b/pyfda/fixpoint_widgets/fir_df/fir_df_pyfixp.py
+@@ -10,7 +10,7 @@
+ Fixpoint class for calculating direct-form DF1 FIR filter using pyfixp routines
+ """
+ import numpy as np
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ import pyfda.filterbroker as fb
+ # from pyfda.libs.pyfda_lib import pprint_log
+ import pyfda.libs.pyfda_fix_lib as fx
+diff --git a/pyfda/fixpoint_widgets/fx_ui_wq.py b/pyfda/fixpoint_widgets/fx_ui_wq.py
+index bbb1212f..0656be10 100644
+--- a/pyfda/fixpoint_widgets/fx_ui_wq.py
++++ b/pyfda/fixpoint_widgets/fx_ui_wq.py
+@@ -13,7 +13,7 @@ import sys
+ import inspect
+ import copy
+ 
+-# from numpy.lib.function_base import iterable
++# from numpy import iterable
+ 
+ import pyfda.filterbroker as fb
+ from pyfda.libs.tree_builder import merge_dicts_hierarchically
+diff --git a/pyfda/fixpoint_widgets/iir_df1/iir_df1_pyfixp.py b/pyfda/fixpoint_widgets/iir_df1/iir_df1_pyfixp.py
+index 217c205d..f175d416 100644
+--- a/pyfda/fixpoint_widgets/iir_df1/iir_df1_pyfixp.py
++++ b/pyfda/fixpoint_widgets/iir_df1/iir_df1_pyfixp.py
+@@ -10,7 +10,7 @@
+ Fixpoint class for calculating direct-form DF1 IIR filter using pyfixp routines
+ """
+ import numpy as np
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ import pyfda.filterbroker as fb
+ import pyfda.libs.pyfda_fix_lib as fx
+ from pyfda.libs.pyfda_fix_lib import quant_coeffs
+diff --git a/pyfda/fixpoint_widgets/old/fir_df/fir_df_nmigen.py b/pyfda/fixpoint_widgets/old/fir_df/fir_df_nmigen.py
+index 76c1c825..1ae6fbba 100644
+--- a/pyfda/fixpoint_widgets/old/fir_df/fir_df_nmigen.py
++++ b/pyfda/fixpoint_widgets/old/fir_df/fir_df_nmigen.py
+@@ -11,7 +11,7 @@ Fixpoint class for calculating direct-form DF1 FIR filter using nMigen library
+ """
+ 
+ import numpy as np
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ from pyfda.libs.pyfda_lib import pprint_log
+ from pyfda.fixpoint_widgets.fixpoint_helpers_nmigen import requant
+ 
+diff --git a/pyfda/fixpoint_widgets/old/fixpoint_helpers.py b/pyfda/fixpoint_widgets/old/fixpoint_helpers.py
+index cc327f02..887fe5b2 100644
+--- a/pyfda/fixpoint_widgets/old/fixpoint_helpers.py
++++ b/pyfda/fixpoint_widgets/old/fixpoint_helpers.py
+@@ -11,7 +11,7 @@ Helper classes and functions for generating and simulating fixpoint filters
+ """
+ import sys
+ 
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ 
+ import pyfda.libs.pyfda_fix_lib as fx
+ 
+@@ -292,7 +292,7 @@ class UI_Q(QWidget):
+ 
+     The internal `dict_ui` with widget settings consists of the following keys and their
+     default settings which can be overwritten with keyword parameters:
+-    
++
+     All labels support HTML formatting.
+ 
+     'wdg_name'  : 'ui_q'                            # widget name
+diff --git a/pyfda/libs/pyfda_fix_lib.py b/pyfda/libs/pyfda_fix_lib.py
+index 1ad7810f..ad683b1a 100644
+--- a/pyfda/libs/pyfda_fix_lib.py
++++ b/pyfda/libs/pyfda_fix_lib.py
+@@ -17,7 +17,7 @@ import copy
+ 
+ import pyfda.filterbroker as fb
+ import numpy as np
+-from numpy.lib.function_base import iterable
++from numpy import iterable
+ from pyfda.libs.pyfda_lib import is_numeric, pprint_log
+ try:
+     import deltasigma as ds
+@@ -994,7 +994,7 @@ class Fixed(object):
+                 y_float = np.float64(y)
+             except ValueError:
+                 try:
+-                    y_float = np.complex(y)
++                    y_float = complex(y)
+                 except Exception:
+                     y_float = 0.0
+                     logger.warning(
+diff --git a/pyfda/libs/pyfda_io_lib.py b/pyfda/libs/pyfda_io_lib.py
+index d39ebdd2..26c997f4 100644
+--- a/pyfda/libs/pyfda_io_lib.py
++++ b/pyfda/libs/pyfda_io_lib.py
+@@ -21,6 +21,7 @@ import pickle
+ import json
+ 
+ import numpy as np
++from numpy.exceptions import VisibleDeprecationWarning
+ from scipy.io import loadmat, savemat, wavfile
+ 
+ try:
+@@ -523,7 +524,7 @@ def csv2array(f: TextIO):
+     # throw an error (instead of just issueing a deprecation warning) when trying to
+     # create a numpy array from nested ragged sequences. This error can then be
+     # caught easily.
+-    warnings.filterwarnings('error', category=np.VisibleDeprecationWarning)
++    warnings.filterwarnings('error', category=VisibleDeprecationWarning)
+     # ------------------------------------------------------------------------------
+     # Get CSV parameter settings
+     # ------------------------------------------------------------------------------
+@@ -634,7 +635,7 @@ def csv2array(f: TextIO):
+     # ------- Convert list to an array of str --------------------
+     try:
+         data_arr = np.array(data_list)
+-    except np.VisibleDeprecationWarning:
++    except VisibleDeprecationWarning:
+         # prevent creation of numpy arrays from nested ragged sequences
+         logger.error("Can't convert to array, columns have different lengths.")
+         return None
+diff --git a/pyfda/libs/pyfda_lib.py b/pyfda/libs/pyfda_lib.py
+index 6bc5d1b6..6bbcc3e2 100644
+--- a/pyfda/libs/pyfda_lib.py
++++ b/pyfda/libs/pyfda_lib.py
+@@ -1127,7 +1127,7 @@ def cround(x, n_dig=0):
+     x = np.real_if_close(x, 1e-15)
+     if n_dig > 0:
+         if np.iscomplex(x):
+-            x = np.complex(np.around(x.real, n_dig), np.around(x.imag, n_dig))
++            x = complex(np.around(x.real, n_dig), np.around(x.imag, n_dig))
+         else:
+             x = np.around(x, n_dig)
+     return x
+@@ -1811,7 +1811,7 @@ def fil_convert(fil_dict: dict, format_in) -> None:
+             # pole and zero at the origin and delete them:
+             z_0 = np.where(zpk[0] == 0)[0]
+             p_0 = np.where(zpk[1] == 0)[0]
+-            if p_0 and z_0:  # eliminate z = 0 and p = 0 from list:
++            if p_0.size > 0 and z_0.size > 0:  # eliminate z = 0 and p = 0 from list:
+                 zpk[0] = np.delete(zpk[0], z_0)
+                 zpk[1] = np.delete(zpk[1], p_0)
+             fil_dict['zpk'] = np.array(
+-- 
+2.34.1
+
