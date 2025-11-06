@@ -26,6 +26,7 @@ requirements:
     - pip
     - setuptools
   run:
+    #- amaranth
     - python >={{ python_min }}
     - numpy
     - scipy >=1.2.0
@@ -35,6 +36,7 @@ requirements:
     - numexpr >=2.8.8
     - markdown
     - pyqt
+    #- yosys
 
 test:
   imports:
